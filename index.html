@@ -3,124 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر عبدو شعراوي | Shaarawy Store</title>
+    <title>Arab Shop | Abdo Shaarawy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        /* المتغيرات والألوان الاحترافية (Dark & Gold Theme) */
-        :root {
-            --bg-color: #0b0c10;
-            --surface-color: #1f2833;
-            --primary-color: #d4af37;
-            --primary-hover: #b5952f;
-            --text-light: #ffffff;
-            --text-muted: #c5a880;
-            --border-color: rgba(212, 175, 55, 0.15);
-            --glow-effect: 0 0 20px rgba(212, 175, 55, 0.3);
-            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        :root { 
+            --gold: #D4AF37; 
+            --black: #050505; 
+            --surface: #0f0f0f;
+            --card: #111111; 
+            --border-color: rgba(214, 175, 55, 0.15);
         }
-
-        /* تخصيص شريط التمرير (Scrollbar) */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* الهيدر والتأثير الزجاجي */
-        header {
+        
+        * { box-sizing: border-box; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        
+        body { 
+            margin: 0; 
+            font-family: 'Alexandria', sans-serif; 
+            background: var(--black); 
+            color: #fff; 
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: rgba(31, 40, 51, 0.85);
+            flex-direction: column;
+        }
+        
+        .gold-italic { font-style: italic; color: var(--gold); font-weight: 900; }
+        
+        /* الهيدر الزجاجي الفخم */
+        header { 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid var(--gold); 
+            background: rgba(0, 0, 0, 0.85); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
         }
 
-        /* تنسيق عنوان اللوجو */
-        header h2 {
-            color: var(--primary-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-        }
-
-        /* شريط البحث المطور */
-        .search-container input {
-            background: rgba(11, 12, 16, 0.8);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 10px 20px;
-            border-radius: 30px;
-            outline: none;
-            width: 180px;
-            transition: var(--transition-smooth);
-            font-size: 0.95rem;
-        }
-
-        .search-container input:focus {
-            border-color: var(--primary-color);
-            box-shadow: var(--glow-effect);
-            width: 250px;
-            background: var(--bg-color);
-        }
-
-        /* زر المنيو الاحترافي (Animated Hamburger) */
+        /* زر المنيو ذو الثلاث شرطات */
         .menu-btn {
             cursor: pointer;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            z-index: 1001;
-            width: 35px;
+            z-index: 1002;
+            width: 30px;
         }
 
         .menu-btn div {
             width: 100%;
             height: 3px;
-            background-color: var(--primary-color);
+            background-color: var(--gold);
             border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
         }
 
-        /* تحويل الزر لعلامة X */
         .menu-btn.open div:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .menu-btn.open div:nth-child(2) { opacity: 0; }
         .menu-btn.open div:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* القائمة الجانبية (من اليسار) */
+        /* القائمة الجانبية */
         .sidebar {
             position: fixed;
             top: 0;
-            left: -320px; /* تم النقل لليسار */
-            right: auto;
+            left: -320px;
             width: 300px;
             height: 100vh;
-            background: rgba(11, 12, 16, 0.95);
+            background: rgba(5, 5, 5, 0.98);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding-top: 100px;
-            box-shadow: 5px 0 25px rgba(0,0,0,0.8);
-            z-index: 999;
-            transition: left 0.5s cubic-bezier(0.8, 0, 0.2, 1);
+            box-shadow: 10px 0 35px rgba(0,0,0,0.8);
+            z-index: 1001;
             border-right: 1px solid var(--border-color);
         }
 
@@ -130,500 +86,397 @@
             display: flex;
             align-items: center;
             padding: 18px 30px;
-            color: var(--text-light);
+            color: #fff;
             text-decoration: none;
             font-size: 1.1rem;
-            font-weight: 500;
-            border-left: 0px solid var(--primary-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar a::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1));
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-            z-index: -1;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(214, 175, 55, 0.05);
         }
 
         .sidebar a:hover {
-            color: var(--primary-color);
+            color: var(--gold);
+            background: rgba(17, 17, 17, 0.6);
             padding-right: 40px;
-            border-left: 5px solid var(--primary-color);
-            background: rgba(31, 40, 51, 0.5);
         }
-
-        .sidebar a:hover::before { transform: translateX(0); }
-
-        /* المحتوى الأساسي والأنيميشن */
-        .main-content {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section {
-            display: none;
-            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .section.active { display: block; }
-
-        @keyframes slideUpFade {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h2.section-title {
-            color: var(--primary-color);
-            margin-bottom: 35px;
-            font-size: 2.2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2.section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 50%;
-            height: 3px;
-            background: var(--primary-color);
-            box-shadow: var(--glow-effect);
-            border-radius: 5px;
-        }
-
-        /* الكروت والنماذج (Forms) */
-        .card {
-            background: linear-gradient(145deg, #161c24, #1f2833);
-            padding: 35px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            max-width: 650px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .form-group { margin-bottom: 25px; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-muted);
-            font-weight: 600;
+        
+        .container { max-width: 1000px; margin: auto; padding: 20px; flex: 1; width: 100%; }
+        
+        /* شريط البحث المطور عن العروض */
+        .search-input { 
+            width: 100%; 
+            padding: 16px; 
+            background: #0a0a0a; 
+            border: 1px solid #222; 
+            color: var(--gold); 
+            border-radius: 50px; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            border-bottom: 3px solid var(--gold); 
+            font-family: inherit;
+            outline: none;
             font-size: 0.95rem;
         }
 
-        .form-group input[type="text"],
-        .form-group select,
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 15px;
-            background-color: rgba(11, 12, 16, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
-            border-radius: 8px;
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(214, 175, 55, 0.2);
+            background: #0d0d0d;
+        }
+        
+        /* الأقسام الصفحية */
+        .section { display: none; animation: fadeIn 0.4s ease forwards; }
+        .section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* لوحة التحكم الإدارية */
+        #adminDashboard { 
+            background: #0a0a0a; 
+            padding: 30px; 
+            border-radius: 25px; 
+            border: 2px dashed var(--gold); 
+            margin-bottom: 40px; 
+        }
+        
+        .admin-input { 
+            background: #000; 
+            border: 1px solid #333; 
+            color: #fff; 
+            padding: 15px; 
+            border-radius: 12px; 
+            width: 100%; 
+            margin-bottom: 15px; 
+            font-family: inherit; 
             outline: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-            background-color: var(--bg-color);
+        .admin-input:focus { border-color: var(--gold); }
+        
+        /* كروت السوق والمبيعات */
+        .market-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 60px; 
         }
-
-        /* الأزرار الاحترافية */
-        button.btn {
-            background: linear-gradient(45deg, var(--primary-hover), var(--primary-color));
-            color: #000;
-            border: none;
-            padding: 16px 25px;
-            width: 100%;
-            font-size: 1.1rem;
-            font-weight: 800;
-            border-radius: 8px;
+        
+        .item-card { 
+            background: var(--card); 
+            border-radius: 20px; 
+            border: 1px solid #222; 
+            overflow: hidden; 
+            position: relative; 
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
         }
-
-        button.btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        
+        .item-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--gold); 
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15); 
         }
-
-        button.btn:active { transform: translateY(1px); }
-
-        /* شبكة العروض وتأثيرات الكروت */
-        .offers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .offer-card {
-            background-color: var(--surface-color);
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition-smooth);
-            position: relative;
-        }
-
-        .offer-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--primary-color);
-            box-shadow: var(--glow-effect), 0 15px 30px rgba(0,0,0,0.5);
-        }
-
-        .offer-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--primary-color);
-            transition: transform 0.5s ease;
-        }
-
-        .offer-card:hover img { transform: scale(1.05); }
-
-        .offer-details {
-            padding: 20px;
-            position: relative;
-            background: linear-gradient(to top, var(--surface-color) 70%, transparent);
-            margin-top: -10px; /* لدمج الصورة مع النص بنعومة */
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+        
+        .item-img-container { width: 100%; height: 260px; overflow: hidden; background: #000; position: relative; }
+        .item-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* البادج المربع الصغير الأصفر والسعر بالأسود */
+        .price-badge { 
+            position: absolute; 
+            bottom: 12px; 
+            left: 12px; 
+            background: var(--gold); 
+            color: #000; 
+            padding: 6px 14px; 
+            border-radius: 6px; 
+            font-weight: 900; 
+            font-style: italic; 
+            font-size: 14px; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
-        .badge.buy { background: linear-gradient(45deg, #c0392b, #e74c3c); color: white; }
-        .badge.sell { background: linear-gradient(45deg, #27ae60, #2ecc71); color: white; }
-
-        /* زر الديسكورد */
-        .discord-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #4752C4, #5865F2);
-            color: white;
-            text-align: center;
-            padding: 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 20px;
-            transition: var(--transition-smooth);
-            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
-        }
-
-        .discord-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(88, 101, 242, 0.5);
-        }
-
-        /* تخصيص الـ Checkbox */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-            cursor: pointer;
-            font-size: 1rem;
+        
+        .item-info { padding: 20px; text-align: center; }
+        
+        .delete-btn { 
+            background: #ff3333; 
+            color: #fff; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: bold; 
+            margin-top: 10px; 
         }
         
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--primary-color);
-            cursor: pointer;
+        /* بنل طلبات الشراء */
+        .order-panel { 
+            background: var(--surface); 
+            padding: 40px; 
+            border-radius: 25px; 
+            border-right: 8px solid var(--gold); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .btn-submit { 
+            background: var(--gold); 
+            color: #000; 
+            border: none; 
+            padding: 18px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-weight: 900; 
+            font-size: 18px; 
+            cursor: pointer; 
+            font-family: inherit; 
         }
 
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid #111; margin-top: auto; }
+        .contact-item { color: var(--gold); text-decoration: none; font-weight: 700; font-style: italic; margin: 0 15px; display: inline-block; }
     </style>
 </head>
-<body>
+<body onload="fetchGlobalPosts()">
 
-    <!-- الهيدر -->
-    <header>
-        <!-- ترتيب العناصر اتغير عشان المنيو يظهر عالشمال في الـ RTL -->
-        <div class="search-container">
-            <input type="text" id="masterSearch" placeholder="بحث سري...">
-        </div>
-        <h2>Shaarawy Store</h2>
-        <div class="menu-btn" id="menuBtn" onclick="toggleSidebar()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </header>
-
-    <!-- القائمة الجانبية -->
-    <div class="sidebar" id="sidebar">
-        <a href="#" onclick="showSection('offers')">العروض (Offers)</a>
-        <a href="#" onclick="showSection('orders')">الطلب (Orders)</a>
-        <a href="#" onclick="showSection('contact')">تواصل معنا (Contact Us)</a>
+<header>
+    <div class="gold-italic" style="font-size: 28px; letter-spacing: 1px;">ARAB SHOP</div>
+    <div class="menu-btn" id="menuBtn" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
+</header>
 
-    <!-- المحتوى -->
-    <div class="main-content">
+<div class="sidebar" id="sidebar">
+    <a href="#" onclick="showSection('offers')">العروض الحية (Offers)</a>
+    <a href="#" onclick="showSection('orders')">إرسال طلب (Orders)</a>
+    <a href="#" onclick="showSection('contact')">تواصل معنا (Contact Us)</a>
+</div>
 
-        <!-- 1. قسم العروض -->
-        <section id="offers" class="section active">
-            <h2 class="section-title">أحدث العروض والطلبات</h2>
-            <div class="offers-grid" id="offersContainer">
-                <p style="text-align: center; color: var(--text-muted); width: 100%; font-size: 1.2rem;">جاري تحميل البيانات...</p>
-            </div>
-        </section>
-
-        <!-- 2. قسم الأوردرات -->
-        <section id="orders" class="section">
-            <h2 class="section-title">إرسال طلب جديد</h2>
-            <div class="card">
-                <div class="form-group">
-                    <label>الحاجة اللي عايزها (المنتج/الخدمة):</label>
-                    <input type="text" id="orderItem" placeholder="اكتب طلبك بالتفصيل هنا..." required>
-                </div>
-                <div class="form-group">
-                    <label>يوزر الديسكورد بتاعك:</label>
-                    <input type="text" id="discordUser" placeholder="مثال: User#1234 أو Username" required>
-                </div>
-                <div class="checkbox-group" onclick="document.getElementById('acceptMiddleman').click()">
-                    <input type="checkbox" id="acceptMiddleman" onclick="event.stopPropagation()">
-                    <label style="margin:0; cursor:pointer; color: var(--text-light);">أقبل وسيط (Middleman)</label>
-                </div>
-                <button class="btn" onclick="sendOrder()">إرسال الطلب الآن</button>
-            </div>
-        </section>
-
-        <!-- 3. قسم التواصل -->
-        <section id="contact" class="section">
-            <h2 class="section-title">تواصل معنا</h2>
-            <div class="card" style="text-align: center;">
-                <h3 style="margin-bottom: 15px; color: var(--text-light); font-size: 1.8rem;">حياكم الله في سيرفرنا</h3>
-                <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem;">للدعم الفني، الاستفسارات المباشرة، ومتابعة الطلبات.</p>
-                <!-- ضع رابط سيرفر الديسكورد هنا -->
-                <a href="رابط_سيرفر_الديسكورد_هنا" class="discord-btn" target="_blank">الانضمام لسيرفر ديسكورد</a>
-            </div>
-        </section>
-
-        <!-- 4. لوحة تحكم الأدمن (تظهر فقط بالكلمة السرية) -->
-        <section id="admin" class="section">
-            <h2 class="section-title" style="color: #e74c3c; border-color: #e74c3c;">لوحة تحكم المالك</h2>
-            <div class="card" style="border-top: 4px solid #e74c3c;">
-                <div class="form-group">
-                    <label>النوع:</label>
-                    <select id="offerType">
-                        <option value="sell">أنا ببيع (Selling)</option>
-                        <option value="buy">أنا محتاج (Buying)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>اسم أو نوع الشيء:</label>
-                    <input type="text" id="offerTitle" placeholder="مثال: حساب لعبة، توكنات، إلخ...">
-                </div>
-                <div class="form-group">
-                    <label>صورة الشيء:</label>
-                    <input type="file" id="offerImage" accept="image/*">
-                    <small style="color: var(--primary-color); display: block; margin-top: 8px;">سيتم تحويل الصورة ورفعها مباشرة</small>
-                </div>
-                <button class="btn" onclick="addOffer()" style="background: linear-gradient(45deg, #c0392b, #e74c3c); color: white; box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);">رفع العرض للمتجر</button>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        // الروابط الأساسية
-        const FIREBASE_URL = "https://web-abdo-default-rtdb.firebaseio.com/offers.json";
-        const WEBHOOK_URL = "رابط_الويب_هوك_هنا";
-
-        // التحكم في القائمة الجانبية وزر المنيو
-        const sidebar = document.getElementById('sidebar');
-        const menuBtn = document.getElementById('menuBtn');
+<div class="container">
+    
+    <section id="offers" class="section active">
+        <input type="text" class="search-input" id="searchBar" placeholder="🔍 ابحث عن العروض الحية..." oninput="filterAndCheckAdmin(this.value)">
         
-        function toggleSidebar() {
-            sidebar.classList.toggle('active');
-            menuBtn.classList.toggle('open');
+        <div id="adminDashboard">
+            <h3 class="gold-italic" style="margin-top:0;">لوحة إدارة عبدو شعراوي 🛠️</h3>
+            <div class="form-group" style="margin-bottom:15px;">
+                <label style="color:var(--gold); display:block; margin-bottom:5px; font-size:14px;">اختر صورة العرض:</label>
+                <input type="file" id="itemFile" accept="image/*" class="admin-input" style="padding:10px;">
+            </div>
+            <input type="text" id="itemName" placeholder="اسم المنتج أو الخدمة" class="admin-input">
+            <input type="text" id="itemPrice" placeholder="السعر المحدد" class="admin-input">
+            <button class="btn-submit" id="publishBtn" onclick="postToFirebase()" style="padding: 15px; font-size:16px;">نشر العرض أونلاين 🚀</button>
+        </div>
+
+        <h2 class="gold-italic" style="text-align: center; font-size: 28px; margin-bottom: 40px; letter-spacing: 1px;">السوق المباشر</h2>
+        <div class="market-grid" id="marketFeed"></div>
+    </section>
+
+    <section id="orders" class="section">
+        <div class="order-panel">
+            <h2 class="gold-italic" style="margin-top:0; margin-bottom:25px; font-size:24px;">إرسال طلب شراء جديد 🚀</h2>
+            <input type="text" id="orderDisc" class="admin-input" placeholder="حسابك في ديسكورد (مثال: Username)">
+            <input type="text" id="orderType" class="admin-input" placeholder="المنتج أو الخدمة المطلوبة">
+            <input type="text" id="orderPrice" class="admin-input" placeholder="العرض المالي المقترح من قبلك">
+            <button class="btn-submit" id="sendOrderBtn" onclick="sendOrder()">تأكيد وإرسال الطلب ✅</button>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="order-panel" style="text-align: center; border-right: none; border-left: 8px solid var(--gold);">
+            <h2 class="gold-italic" style="margin-top:0; font-size:26px;">الدعم الفني المباشر</h2>
+            <p style="color:#aaa; margin-bottom:30px; font-size:15px;">يمكنك الانضمام مباشرة إلى سيرفر الديسكورد الرسمي لمتابعة طلباتك أو التواصل الفوري.</p>
+            <a href="ضع_رابط_سيرفر_الديسكورد_هنا" class="btn-submit" style="display: block; text-decoration: none; text-align: center; line-height: 24px;" target="_blank">الانضمام لسيرفر الديسكورد 💬</a>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p class="gold-italic">تواصل مع عبدو شعراوي الرسمي</p>
+    <a href="tel:01557863831" class="contact-item">📞 01557863831</a>
+</footer>
+
+<script>
+    // تم تحديث الداتا بيس لرابط الفايربيز المباشر الخاص بك
+    const firebaseURL = "https://web-abdo-default-rtdb.firebaseio.com/posts.json"; 
+    // يرجى وضع رابط الويب هوك الخاص بسيرفرك هنا لتلقي الطلبات الحية
+    const webhookURL = "ضع_رابط_الويب_هوك_الجديد_هنا"; 
+    
+    let isAdmin = false;
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        menuBtn.classList.toggle('open');
+    }
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        
+        if(sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            menuBtn.classList.remove('open');
+        }
+        if(sectionId === 'offers') fetchGlobalPosts();
+    }
+
+    // جلب المنتجات الحية وعرضها
+    async function fetchGlobalPosts() {
+        const feed = document.getElementById('marketFeed');
+        try {
+            const res = await fetch(firebaseURL);
+            const data = await res.json();
+            feed.innerHTML = "";
+            if(!data) return feed.innerHTML = "<p style='text-align:center; width:100%; color:#777;'>السوق فارغ حالياً.</p>";
+            
+            Object.keys(data).reverse().forEach(key => {
+                const post = data[key];
+                
+                const cleanName = post.name.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                const cleanPrice = post.price.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+                feed.insertAdjacentHTML('beforeend', `
+                    <div class="item-card" onclick="redirectToOrder('${cleanName}', '${cleanPrice}')">
+                        <div class="item-img-container">
+                            <div class="price-badge">${post.price}</div>
+                            <img src="${post.img}" class="item-img">
+                        </div>
+                        <div class="item-info">
+                            <h3 class="gold-italic" style="margin:0; font-size:18px;">${post.name}</h3>
+                            ${isAdmin ? `<button class="delete-btn" onclick="event.stopPropagation(); deletePost('${key}')">حذف العرض 🗑️</button>` : ''}
+                        </div>
+                    </div>`);
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    // تصفية العروض فورياً والتحقق من كلمة السر للأدمن
+    function filterAndCheckAdmin(v) {
+        // 1. فحص كود الأدمن السري الخاص بعبدو شعراوي
+        if(v === "bakr2124") { 
+            isAdmin = true;
+            document.getElementById('adminDashboard').style.display = "block";
+            document.getElementById('searchBar').value = "";
+            fetchGlobalPosts();
+            alert("تم تسجيل الدخول للوحة التحكم بنجاح ✅");
+            return;
         }
 
-        // التنقل بين الأقسام
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            
-            // قفل القائمة لو مفتوحة
-            if(sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                menuBtn.classList.remove('open');
-            }
-            
-            if(sectionId === 'offers') loadOffers();
-        }
-
-        // نظام البحث لفتح لوحة الأدمن
-        document.getElementById('masterSearch').addEventListener('input', function(e) {
-            if(e.target.value === 'Abdo9090') {
-                showSection('admin');
-                e.target.value = ''; 
-                alert('مرحباً بك يا عبدو! تم فتح لوحة التحكم بنجاح.');
+        // 2. تصفية الكروت حياً في الواجهة أثناء البحث
+        const query = v.toLowerCase();
+        const cards = document.querySelectorAll('.item-card');
+        cards.forEach(card => {
+            const nameText = card.querySelector('h3').innerText.toLowerCase();
+            const priceText = card.querySelector('.price-badge').innerText.toLowerCase();
+            if(nameText.includes(query) || priceText.includes(query)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
             }
         });
+    }
 
-        // تحويل الصورة
-        function getBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
+    // الضغط على الكارت يحولك مباشرة للأوردر ويعبئ البيانات
+    function redirectToOrder(name, price) {
+        showSection('orders');
+        document.getElementById('orderType').value = name;
+        document.getElementById('orderPrice').value = price;
+        document.getElementById('orderDisc').focus();
+    }
 
-        // رفع العرض
-        async function addOffer() {
-            const type = document.getElementById('offerType').value;
-            const title = document.getElementById('offerTitle').value;
-            const imageFile = document.getElementById('offerImage').files[0];
-
-            if(!title || !imageFile) {
-                alert("يرجى ملء جميع البيانات واختيار صورة!");
-                return;
-            }
-
-            const btn = document.querySelector('#admin .btn');
-            btn.innerText = "جاري الرفع...";
-
-            try {
-                const imageBase64 = await getBase64(imageFile);
-                const offerData = { type, title, image: imageBase64, date: new Date().toISOString() };
-
-                await fetch(FIREBASE_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(offerData)
-                });
-
-                alert("تم رفع العرض بنجاح!");
-                document.getElementById('offerTitle').value = '';
-                document.getElementById('offerImage').value = '';
-                btn.innerText = "رفع العرض للمتجر";
-                showSection('offers');
-            } catch (error) {
-                console.error("خطأ:", error);
-                alert("حدث خطأ أثناء الرفع.");
-                btn.innerText = "رفع العرض للمتجر";
-            }
-        }
-
-        // جلب العروض
-        async function loadOffers() {
-            const container = document.getElementById('offersContainer');
-            try {
-                const response = await fetch(FIREBASE_URL);
-                const data = await response.json();
+    // رفع العروض إلى الفايربيز
+    function postToFirebase() {
+        const fileInput = document.getElementById('itemFile');
+        const file = fileInput.files[0];
+        const name = document.getElementById('itemName').value;
+        const price = document.getElementById('itemPrice').value;
+        
+        if(!file || !name || !price) return alert("يرجى إكمال جميع الحقول المطلوبة!");
+        
+        const btn = document.getElementById('publishBtn');
+        btn.innerText = "جاري الرفع...";
+        
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = async function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 500; 
+                canvas.height = img.height * (500/img.width);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 
-                container.innerHTML = ''; 
-                
-                if(!data) {
-                    container.innerHTML = '<p style="color:var(--text-muted); text-align:center; width:100%; font-size:1.2rem;">لا توجد عروض حالياً، كن أول من يضيف عرضاً!</p>';
-                    return;
-                }
-
-                const offersArray = Object.keys(data).map(key => data[key]).reverse();
-
-                offersArray.forEach(offer => {
-                    const badgeClass = offer.type === 'sell' ? 'sell' : 'buy';
-                    const badgeText = offer.type === 'sell' ? 'للبيـــع' : 'مطلـــوب';
-                    
-                    container.innerHTML += `
-                        <div class="offer-card">
-                            <img src="${offer.image}" alt="Offer Image">
-                            <div class="offer-details">
-                                <span class="badge ${badgeClass}">${badgeText}</span>
-                                <h3 style="font-size:1.3rem; margin-bottom:5px; color: var(--text-light);">${offer.title}</h3>
-                            </div>
-                        </div>
-                    `;
+                await fetch(firebaseURL, { 
+                    method: 'POST', 
+                    body: JSON.stringify({ name, price, img: canvas.toDataURL('image/jpeg', 0.7) }) 
                 });
-            } catch (error) {
-                container.innerHTML = '<p style="color:#e74c3c; text-align:center; width:100%;">فشل في تحميل البيانات من قاعدة البيانات.</p>';
-            }
-        }
-
-        // إرسال الأوردر
-        function sendOrder() {
-            const item = document.getElementById('orderItem').value;
-            const discordUser = document.getElementById('discordUser').value;
-            const acceptMiddleman = document.getElementById('acceptMiddleman').checked ? '✅ نعم، يقبل وسيط' : '❌ لا يقبل وسيط';
-
-            if(!item || !discordUser) {
-                alert("يرجى كتابة طلبك ويوزر الديسكورد الخاص بك!");
-                return;
-            }
-
-            if(WEBHOOK_URL.includes("رابط_الويب_هوك")) {
-                alert("يرجى إضافة رابط الويب هوك الخاص بك في كود الجافاسكريبت أولاً!");
-                return;
-            }
-
-            const payload = {
-                username: "Shaarawy Store Bot",
-                avatar_url: "https://i.imgur.com/AfFp7pu.png",
-                embeds: [{
-                    title: "🛒 طلب شراء/خدمة جديد",
-                    color: 13936439, // كود اللون الذهبي بالديسيمال
-                    fields: [
-                        { name: "الطلب", value: `**${item}**`, inline: false },
-                        { name: "يوزر المشتري", value: `\`${discordUser}\``, inline: true },
-                        { name: "الوسيط", value: acceptMiddleman, inline: true }
-                    ],
-                    footer: { text: "تم الإرسال من متجر شعراوي الرسمي" },
-                    timestamp: new Date()
-                }]
+                
+                alert("تم نشر العرض بنجاح!"); 
+                location.reload();
             };
+        };
+        reader.readAsDataURL(file);
+    }
 
-            const btn = document.querySelector('#orders .btn');
-            btn.innerText = "جاري الإرسال...";
+    // حذف عرض من قاعدة البيانات
+    async function deletePost(key) {
+        if(confirm("هل أنت متأكد من رغبتك في حذف هذا العرض نهائياً؟")) {
+            await fetch(`https://web-abdo-default-rtdb.firebaseio.com/posts/${key}.json`, { method: 'DELETE' });
+            fetchGlobalPosts();
+        }
+    }
 
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                alert("تم إرسال طلبك بنجاح! سيتم التواصل معك عبر ديسكورد قريبًا.");
-                document.getElementById('orderItem').value = '';
-                document.getElementById('discordUser').value = '';
-                document.getElementById('acceptMiddleman').checked = false;
-                btn.innerText = "إرسال الطلب الآن";
-            }).catch(err => {
-                alert("حدث خطأ أثناء الإرسال.");
-                btn.innerText = "إرسال الطلب الآن";
-                console.error(err);
-            });
+    // إرسال تفاصيل الطلب للديسكورد ويب هوك
+    async function sendOrder() {
+        const disc = document.getElementById('orderDisc').value;
+        const item = document.getElementById('orderType').value;
+        const price = document.getElementById('orderPrice').value;
+        
+        if(!disc || !item) return alert("يرجى إدخال اسم الديسكورد والمنتج المطلوب!");
+        
+        if(webhookURL.includes("ضع_رابط_الويب_هوك")) {
+            alert("يرجى ربط الديسكورد ويب هوك الفعلي في السكريبت لتلقي الطلبات الحية!");
+            return;
         }
 
-        // تحميل العروض عند فتح الصفحة
-        window.onload = loadOffers;
-
-    </script>
+        const payload = { 
+            content: "🔔 **طلب شراء جديد قادم من متجر Arab Shop!**", 
+            embeds: [{ 
+                title: "تفاصيل الطلب المستلم", 
+                color: 13936439,
+                fields: [
+                    {name:"👤 حساب العميل", value: `\`${disc}\``, inline:true}, 
+                    {name:"📦 المنتج المطلوب", value: item, inline:true}, 
+                    {name:"💰 العرض المالي", value: price || "غير محدد", inline:true}
+                ],
+                footer: { text: "أنظمة Arab Shop التلقائية" },
+                timestamp: new Date()
+            }] 
+        };
+        
+        try {
+            await fetch(webhookURL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(payload) 
+            });
+            alert("تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً ✅");
+            document.getElementById('orderDisc').value = "";
+            document.getElementById('orderType').value = "";
+            document.getElementById('orderPrice').value = "";
+            showSection('offers');
+        } catch(e) {
+            alert("حدث خطأ أثناء إرسال الأوردر.");
+        }
+    }
+</script>
 </body>
 </html>
-
